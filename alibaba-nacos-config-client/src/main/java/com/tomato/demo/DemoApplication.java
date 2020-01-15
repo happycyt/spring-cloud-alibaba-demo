@@ -18,12 +18,12 @@ public class DemoApplication {
     @RefreshScope
     static class TestController {
 
-        @Value("${tomatospace.title:}")
-        private String title;
+        @Value("${user.address:hangzhou}")
+        private String address;
 
         @GetMapping("/test")
         public String hello() {
-            return title;
+            return "address: "+ address;
         }
 
     }
