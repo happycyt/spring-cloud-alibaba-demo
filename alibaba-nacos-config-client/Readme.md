@@ -13,3 +13,13 @@
 优点：官方建议的方式，通过Namespace来区分不同的环境，释放了Group的自由度，这样可以让Group的使用专注于做业务层面的分组管理。同时，Nacos控制页面上对于Namespace也做了分组展示，不需要搜索，就可以隔离开不同的环境配置，非常易用。  
 缺点：没有啥缺点，可能就是多引入一个概念，需要用户去理解吧。  
 建议：直接用这种方式长远上来说会比较省心。虽然可能对小团队而言，项目不多，第一第二方式也够了，但是万一后面做大了呢？  
+
+
+## 配置加载的优先级
+当我们加载多个配置的时候，如果存在相同的key时，我们需要深入了解配置加载的优先级关系。  
+
+在使用Nacos配置的时候，主要有以下三类配置：  
+A: 通过spring.cloud.nacos.config.shared-dataids定义的共享配置  
+B: 通过spring.cloud.nacos.config.ext-config[n]定义的加载配置  
+C: 通过内部规则（spring.cloud.nacos.config.prefix、spring.cloud.nacos.config.file-extension、spring.cloud.nacos.config.group这几个参数）拼接出来的配置  
+A < B < C  
